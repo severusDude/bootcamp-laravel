@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,7 +19,11 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 // editor routes
 Route::group(['middleware' => ['role:admin|editor']], function () {
-    return;
+    Route::controller(NewsController::class)->group(function () {
+        Route::post('/news/create', 'create_news');
+        Route::put('/news/{id}', 'edit_news');
+        Route::delete('/news/{id}', 'delete_news');
+    });
 });
 
 
