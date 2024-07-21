@@ -8,9 +8,7 @@ Route::get('/', function () {
 });
 
 // standard routes
-Route::get('/news/{id}', function (string $id) {
-    return;
-});
+Route::get('/news/{id}', [NewsController::class, 'read_news']);
 
 // admin routes
 Route::group(['middleware' => ['role:admin']], function () {
