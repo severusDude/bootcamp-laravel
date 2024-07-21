@@ -13,9 +13,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('comment_id');
-            $table->foreignIdFor(News::class, 'news_id');
+            $table->unsignedBigInteger('news_id');
+            $table->primary(['comment_id', 'news_id']);
+            $table->foreign('news_id')->references('news_id')->on('news')->cascadeOnDelete();
             $table->foreignId('created_by')->constrained('users', 'id');
             $table->timestamps();
             $table->text('content');
