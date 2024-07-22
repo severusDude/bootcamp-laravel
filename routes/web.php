@@ -5,12 +5,25 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
+// tips: it is reccommended to use (php artisan route:list) command to read all this routes bullshit
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 // basic routes
 Route::get('/{category}/{news_id}', [NewsController::class, 'read_news']);
+
+// standard routes
+Route::group(['middleware' => ['role:admin|editor|standard'], 'prefix' => '/{category}/{news_id}'], function () {
+
+    // manage commments
+    Route::controller(CommentController::class)->group(function () {
+        Route::post('/', 'create_comment');
+        Route::put('/{comment_id}', 'edit_comment');
+        Route::delete('/{comment_id}', 'delete_comment');
+    });
+});
 
 // admin routes
 Route::group(['middleware' => ['role:admin'], 'prefix' => '/admin'], function () {
@@ -34,11 +47,16 @@ Route::group(['middleware' => ['role:admin'], 'prefix' => '/admin'], function ()
 });
 
 // editor routes
-Route::group(['middleware' => ['role:admin|editor']], function () {
+
+// create news
+Route::post('/create', [NewsController::class, 'create_news']);
+
+Route::group(['middleware' => ['role:editor'], 'prefix' => '/{category}/{news_id}'], function () {
+
+    // editor manage news
     Route::controller(NewsController::class)->group(function () {
-        Route::post('/news/create', 'create_news');
-        Route::put('/news/{id}', 'edit_news');
-        Route::delete('/news/{id}', 'delete_news');
+        Route::put('/', 'edit_news');
+        Route::delete('/', 'delete_news');
     });
 });
 
