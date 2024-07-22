@@ -7,15 +7,22 @@ use Illuminate\Support\Facades\Route;
 
 // tips: it is reccommended to use (php artisan route:list) command to read all this routes bullshit
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('homepage', ['title' => 'Homepage']);
+})->name('homepage');
 
 // basic routes
 Route::get('/{category}/{news_id}', [NewsController::class, 'read_news']);
 
 // standard routes
-Route::group(['middleware' => ['role:admin|editor|standard'], 'prefix' => '/{category}/{news_id}'], function () {
+Route::group([
+    'middleware' => ['role:admin|editor|standard'],
+    'prefix' => '/{category}/{news_id}'
+], function () {
 
     // manage commments
     Route::controller(CommentController::class)->group(function () {
