@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('homepage', ['title' => 'Homepage']);
-})->name('homepage');
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 // basic routes
 Route::get('/{category}/{news_id}', [NewsController::class, 'read_news']);
