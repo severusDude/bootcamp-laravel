@@ -13,7 +13,7 @@
                 <div class="flex flex-col justify-between p-4 leading-normal text-center">
                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">
                         {{ \Carbon\Carbon::parse($newsItem['date'])->format('F j, Y') }} -
-                        {{ $newsItem->category }}
+                        {{ $newsItem->category->category_name }}
                     </p>
                     <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
                         {{ $newsItem['news_title'] }}</h5>
