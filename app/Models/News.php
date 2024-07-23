@@ -18,6 +18,13 @@ class News extends Model
 
     protected $fillable = ['news_title', 'news_body', 'category'];
 
+    protected $hidden = ['deleted_at'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
