@@ -6,7 +6,7 @@
     <h1 class="text-2xl font-bold mb-4">News List</h1>
     <div id="news-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($news as $newsItem)
-            <a href="#"
+            <a href="{{ $newsItem->getNewsURL() }}"
                 class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 transition-transform transform hover:scale-105">
                 <img class="object-cover w-full h-40 rounded-t-lg" src="{{ $newsItem['image_url'] }}"
                     alt="{{ $newsItem['news_title'] }}">

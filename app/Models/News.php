@@ -22,6 +22,11 @@ class News extends Model
 
     protected $hidden = ['deleted_at'];
 
+    public function getNewsURL()
+    {
+        return "/" . $this->category_id . "/" . $this->id;
+    }
+
     // Relation
     public function user()
     {
