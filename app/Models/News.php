@@ -14,19 +14,22 @@ class News extends Model
     use SoftDeletes;
     use CreatedBy;
 
-    protected $primaryKey = 'news_id';
-
-    protected $fillable = ['news_title', 'news_body', 'category'];
+    protected $fillable = ['news_title', 'news_body', 'category_id'];
 
     protected $hidden = ['deleted_at'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, ['comment_id', 'news_id']);
     }
 }
