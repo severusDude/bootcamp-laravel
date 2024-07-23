@@ -12,6 +12,7 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
     use CreatedBy;
+    use DateFormattable;
 
     protected $primaryKey = ['comment_id', 'news_id'];
     public $incrementing = false;
@@ -20,7 +21,7 @@ class Comment extends Model
 
     public function news()
     {
-        return $this->belongsTo(News::class, 'news_id', ['comment_id', 'news_id']);
+        return $this->belongsTo(News::class);
     }
 
     public function user()

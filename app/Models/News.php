@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CreatedBy;
+use App\Traits\DateFormattable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +14,7 @@ class News extends Model
     use HasFactory;
     use SoftDeletes;
     use CreatedBy;
+    use DateFormattable;
 
     protected $fillable = ['news_title', 'news_body', 'category_id'];
 
@@ -30,6 +32,6 @@ class News extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, ['comment_id', 'news_id']);
+        return $this->hasMany(Comment::class);
     }
 }
