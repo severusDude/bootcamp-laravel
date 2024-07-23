@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\CreatedBy;
+use App\Traits\DateFormattable;
+use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,16 +15,27 @@ class News extends Model
     use HasFactory;
     use SoftDeletes;
     use CreatedBy;
+    use Compoships;
+    use DateFormattable;
 
-    protected $primaryKey = 'news_id';
-
-    protected $fillable = ['news_title', 'news_body', 'category'];
+    protected $fillable = ['news_title', 'news_body', 'category_id'];
 
     protected $hidden = ['deleted_at'];
 
+    public function getNewsURL()
+    {
+        return "/" . $this->category_id . "/" . $this->id;
+    }
+
+    // Relation
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function comments()

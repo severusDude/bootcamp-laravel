@@ -20,8 +20,8 @@ class NewsFactory extends Factory
     {
         return [
             'news_title' => fake()->sentence(),
-            'category_id' => Category::all()->random()->category_id,
-            'created_by' => 1,
+            'category_id' => Category::all()->random()->id,
+            'user_id' => rand(1, 2),
             'news_body' => fake()->text()
         ];
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -10,7 +12,11 @@ class NewsController extends Controller
         string $category,
         string $news_id
     ) {
-        return "this is news";
+
+        $news = News::with('user', 'category', 'comments')->findOrFail($news_id);
+        $title = $news->news_title;
+
+        return view('news', compact('title', 'news'));
     }
 
     public function create_news()
