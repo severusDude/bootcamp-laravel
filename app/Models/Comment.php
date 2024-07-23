@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\CreatedBy;
+use App\Traits\DateFormattable;
+use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +14,7 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
     use CreatedBy;
+    use Compoships;
     use DateFormattable;
 
     protected $primaryKey = ['comment_id', 'news_id'];
