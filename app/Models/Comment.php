@@ -38,7 +38,7 @@ class Comment extends Model
             $news_id = $comment->news_id;
 
             // current news comment count
-            $current_id = self::where('news_id', $news_id)->count();
+            $current_id = self::where('news_id', $news_id)->withTrashed()->count();
             $new_id = $current_id ? $current_id + 1 : 1;
 
             // set new_id for comment_id
