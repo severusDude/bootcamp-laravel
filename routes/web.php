@@ -33,6 +33,7 @@ Route::middleware([
         Route::patch('/news/{id}/restore', [NewsController::class, 'restore'])->name('news.restore');
         Route::resource('news', NewsController::class);
         Route::post('/news/upload', [NewsController::class, 'uploadImage'])->name('news.upload');
+        Route::patch('users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
         Route::resource('users', UserController::class);
     });
 });

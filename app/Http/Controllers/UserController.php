@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->latest()->paginate(5);
+        $users = User::withTrashed()->with('roles')->latest()->paginate(5);
 
         return view('admin.users.index', compact('users'));
     }
@@ -60,8 +60,18 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success', 'User deleted succesfully');
+    }
+
+    public function restore(string $id)
+    {
+
+        $user = User::withTrashed()->findOrFail($id);
+        $user->restore();
+
+        return redirect()->route('admin.users.index')->with('success', 'User restored succesfully');
     }
 }
