@@ -39,7 +39,8 @@
                         {{-- <td class="px-6 py-4 whitespace-nowrap text-center">
                         <img src="{{ asset('storage/' . $newsItem->image_url) }}" alt="{{ $newsItem->image_caption }}" class="w-10 h-10 rounded-full object-cover mx-auto">
                     </td> --}}
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                        <td
+                            class="px-6 py-4 text-wrap max-w-72 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                             {{ $newsItem->title }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
