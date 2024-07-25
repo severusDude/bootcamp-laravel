@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function news()
     {
-        return $this->hasMany(News::class, 'created_by');
+        return $this->hasMany(News::class);
     }
 
     public function comments()
