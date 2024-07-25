@@ -6,6 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
+// Public routes
+
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Route::middleware([
     'auth:sanctum',
