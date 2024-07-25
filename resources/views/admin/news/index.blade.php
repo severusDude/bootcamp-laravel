@@ -38,7 +38,7 @@
                             {{ $newsItem->category->name }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                            {{ $newsItem->date }}
+                            {{ $newsItem->created_at }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-center space-x-4">
                             <a href="{{ route('admin.news.edit', $newsItem->id) }}"
