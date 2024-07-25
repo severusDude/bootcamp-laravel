@@ -3,39 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function create_comment(Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $uri = explode("/", $request->getUri());
+        //
+    }
 
-        $category_id = $uri[3];
-        $news_id = $uri[4];
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request, News $news)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+
+        $request->validate(['content' => 'required']);
 
         $comment = new Comment;
 
-        $comment->news_id = $news_id;
+        $comment->news_id = $id;
         $comment->content = $request->comment;
         $comment->save();
 
         return redirect('/');
     }
 
-    public function edit_comment(
-        string $category,
-        string $news_id,
-        string $comment_id
-    ) {
-        return;
-    }
-
-    public function delete_comment(
-        string $category,
-        string $news_id,
-        string $comment_id
-    ) {
-        return;
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

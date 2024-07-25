@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
-Route::get('/news/{id}', [NewsController::class, 'show']);
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::post('/news/{id}', [NewsController::class, 'store_comment']);
 
 
 Route::middleware([

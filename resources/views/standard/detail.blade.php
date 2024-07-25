@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>{{ $news->title }}</x-slot:title>
-    <x-slot:header>{{ $news->category->category_name }}</x-slot:header>
+    <x-slot:header>{{ $news->category->name }}</x-slot:header>
     <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
             <article
@@ -37,10 +37,11 @@
                     @can('create comment')
                         <form method="POST" action="{{ url()->current() }}" class="mb-6">
                             @csrf
+                            @method('POST')
                             <div
                                 class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                                 <label for="comment" class="sr-only">Your comment</label>
-                                <textarea name="comment" id="comment" rows="6"
+                                <textarea name="content" id="comment" rows="6"
                                     class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                                     placeholder="Write a comment..." required></textarea>
                             </div>
@@ -52,7 +53,7 @@
                     @endcan
                     <!-- Comment section -->
                     @foreach ($news->comments as $comment)
-                        <x-news-comment :comment="$comment"></x-news-comment>
+                        <x-news-comment id="comment-btn-{{ $loop->index }}" :comment="$comment"></x-news-comment>
                     @endforeach
                 </section>
             </article>

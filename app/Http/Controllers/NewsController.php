@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -109,6 +110,19 @@ class NewsController extends Controller
         $news->restore();
 
         return redirect()->route('admin.news.index')->with('success', 'News restored successfully');
+    }
+
+    public function store_comment(Request $request, string $id)
+    {
+        $request->validate(['content' => 'required']);
+
+        $comment = new Comment;
+
+        $comment->news_id = $id;
+        $comment->content = $request->content;
+        $comment->save();
+
+        return redirect()->route('news.show', $id);
     }
 
     public function uploadImage(Request $request)
