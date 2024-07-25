@@ -42,7 +42,7 @@
                         <ul class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
                             @role('admin')
                                 <li>
-                                    <a href="{{ route('admin.users') }}"
+                                    <a href="{{ route('admin.dashboard') }}"
                                         class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
                                         {{ __('Manage Site') }}
                                     </a>
