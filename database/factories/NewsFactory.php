@@ -19,10 +19,10 @@ class NewsFactory extends Factory
     public function definition(): array
     {
         return [
-            'news_title' => fake()->sentence(),
+            'title' => fake()->sentence(),
             'category_id' => Category::all()->random()->id,
             'user_id' => rand(1, 2),
-            'news_body' => fake()->text()
+            'body' => fake()->text(500)
         ];
     }
 }

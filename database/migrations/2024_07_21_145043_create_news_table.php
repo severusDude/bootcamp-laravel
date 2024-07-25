@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('news_title');
+            $table->string('title');
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(User::class);
             $table->timestamps();
-            $table->text('news_body');
+            $table->text('body');
             $table->softDeletes();
         });
     }

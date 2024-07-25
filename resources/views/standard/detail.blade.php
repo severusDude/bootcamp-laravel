@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot:title>{{ $news->news_title }}</x-slot:title>
+    <x-slot:title>{{ $news->title }}</x-slot:title>
     <x-slot:header>{{ $news->category->category_name }}</x-slot:header>
     <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
@@ -25,9 +25,9 @@
                     <!-- Article title -->
                     <h1
                         class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-                        {{ $news->news_title }}</h1>
+                        {{ $news->title }}</h1>
                 </header>
-                {{ $news->news_body }}
+                {{ $news->body }}
                 <!-- Post Comment section -->
                 <section class="not-format">
                     <div class="pt-4 flex justify-between items-center mb-6">

@@ -18,7 +18,7 @@ class News extends Model
     use Compoships;
     use DateFormattable;
 
-    protected $fillable = ['news_title', 'news_body', 'category_id'];
+    protected $fillable = ['title', 'body', 'category_id'];
 
     protected $hidden = ['deleted_at'];
 

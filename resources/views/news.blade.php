@@ -25,9 +25,9 @@
                     <!-- Article title -->
                     <h1
                         class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-                        {{ $news->news_title }}</h1>
+                        {{ $news->title }}</h1>
                 </header>
-                {{ $news->news_body }}
+                {{ $news->body }}
                 <!-- Post Comment section -->
                 <section class="not-format">
                     <div class="pt-4 flex justify-between items-center mb-6">
