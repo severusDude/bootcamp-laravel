@@ -57,8 +57,12 @@ class NewsController extends Controller
     public function show(string $id)
     {
         $news = News::with('user', 'category', 'comments')->findOrFail($id);
+        $related = News::with('user', 'category', 'comments')
+            ->where('category_id', $news->category_id)
+            ->limit(4)
+            ->get();
 
-        return view('standard.detail', compact('news'));
+        return view('standard.detail', compact('news', 'related'));
     }
 
     /**
