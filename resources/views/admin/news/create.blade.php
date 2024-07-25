@@ -35,3 +35,39 @@
         <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">Simpan</button>
     </form>
 @endsection
+
+{{-- @section('scripts')
+    @vite('resources/js/app.js')
+    <script>
+        tinymce.init({
+            selector: 'textarea.tinymce-editor',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak code insertdatetime media table paste searchreplace fullscreen',
+            toolbar_mode: 'floating',
+            image_title: true,
+            automatic_uploads: true,
+            file_picker_types: 'image',
+            images_upload_url: '{{ route('admin.news.upload') }}',
+            file_picker_callback: function(cb, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.onchange = function() {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function() {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+                        cb(blobInfo.blobUri(), {
+                            title: file.name
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            },
+        });
+    </script>
+@endsection --}}

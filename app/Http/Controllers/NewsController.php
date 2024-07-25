@@ -65,15 +65,30 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $news = News::findOrFail($id);
+        $categories = Category::all();
+
+        return view('admin.news.edit', compact('news', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'max:255'],
+            'body' => 'required',
+            'category_id' => ['required', 'exists:categories,id']
+        ]);
+
+        $news->title = $request->title;
+        $news->body = $request->body;
+        $news->category_id = $request->category_id;
+
+        $news->save();
+
+        return redirect()->route('admin.news.index')->with('success', 'News updated successfully');
     }
 
     /**

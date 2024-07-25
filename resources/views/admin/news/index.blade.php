@@ -20,6 +20,11 @@
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Tanggal
+                        dibuat
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Tanggal
+                        diperbaharui
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Aksi</th>
@@ -39,6 +44,9 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                             {{ $newsItem->created_at }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                            {{ $newsItem->updated_at }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-center space-x-4">
                             <a href="{{ route('admin.news.edit', $newsItem->id) }}"
