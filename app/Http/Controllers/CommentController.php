@@ -51,18 +51,18 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $news_id, string $id)
     {
 
         $request->validate(['content' => 'required']);
 
-        $comment = new Comment;
+        $comment = Comment::where('news_id', $news_id)->findOrFail($id);
 
-        $comment->news_id = $id;
-        $comment->content = $request->comment;
+        $comment->content = $request->content;
+
         $comment->save();
 
-        return redirect('/');
+        return redirect()->route('news.show', $news_id);
     }
 
     /**

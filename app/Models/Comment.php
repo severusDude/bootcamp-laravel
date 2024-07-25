@@ -17,10 +17,9 @@ class Comment extends Model
     use Compoships;
     use DateFormattable;
 
-    protected $primaryKey = ['comment_id', 'news_id'];
-    public $incrementing = false;
-
     protected $fillable = ['content',];
+
+    protected $hidden = ['deleted_at',];
 
     public function news()
     {
@@ -30,13 +29,6 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    protected function setKeysForSaveQuery($query)
-    {
-        $query->where('comment_id', '=', $this->getAttribute('comment_id'))->where('news_id', '=', $this->getAttribute('news_id'));
-
-        return $query;
     }
 
     protected static function booted(): void
@@ -50,7 +42,7 @@ class Comment extends Model
             $new_id = $current_id ? $current_id + 1 : 1;
 
             // set new_id for comment_id
-            $comment->comment_id = $new_id;
+            $comment->id = $new_id;
         });
     }
 }

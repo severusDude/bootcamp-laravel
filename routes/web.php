@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 Route::post('/news/{id}', [NewsController::class, 'store_comment']);
+Route::put('/news/{news_id}/{id}', [CommentController::class, 'update']);
 
 
 Route::middleware([
