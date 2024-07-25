@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
+Route::get('/news/{id}', [NewsController::class, 'show']);
 
 Route::middleware([
     'auth:sanctum',

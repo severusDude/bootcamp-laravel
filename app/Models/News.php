@@ -24,7 +24,7 @@ class News extends Model
 
     public function getNewsURL()
     {
-        return "/" . $this->category_id . "/" . $this->id;
+        return "/news/" . $this->id;
     }
 
     // Relation
