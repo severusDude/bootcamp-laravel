@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -24,5 +25,6 @@ Route::middleware([
 
     Route::prefix('/admin')->middleware('role:admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::resource('categories', CategoryController::class);
     });
 });
