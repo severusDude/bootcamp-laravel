@@ -13,7 +13,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::with('category')->latest()->paginate(5);
+        $news = News::with('category')->latest()->withTrashed()->paginate(5);
 
         return view('admin.news.index', compact('news'));
     }
@@ -94,9 +94,21 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(News $news)
     {
-        //
+        $news->delete();
+        return redirect()->route('admin.news.index')->with('success', 'News deleted successfully');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        $news = News::withTrashed()->findOrFail($id);
+        $news->restore();
+
+        return redirect()->route('admin.news.index')->with('success', 'News restored successfully');
     }
 
     public function uploadImage(Request $request)

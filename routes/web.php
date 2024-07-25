@@ -26,6 +26,7 @@ Route::middleware([
     Route::prefix('/admin')->middleware('role:admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
+        Route::patch('/news/{id}/restore', [NewsController::class, 'restore'])->name('news.restore');
         Route::resource('news', NewsController::class);
         Route::post('/news/upload', [NewsController::class, 'uploadImage'])->name('news.upload');
     });
