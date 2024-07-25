@@ -23,6 +23,6 @@ Route::middleware([
     })->name('dashboard');
 
     Route::prefix('/admin')->middleware('role:admin')->name('admin.')->group(function () {
-        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     });
 });
