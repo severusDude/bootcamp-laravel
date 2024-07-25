@@ -39,7 +39,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('admin.categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 
     /**
