@@ -68,8 +68,13 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $news_id, string $id)
     {
-        //
+
+        $comment = Comment::where('news_id', $news_id)->findOrFail($id);
+
+        $comment->delete();
+
+        return redirect()->route('news.show', $news_id);
     }
 }

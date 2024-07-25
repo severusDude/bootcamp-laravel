@@ -31,12 +31,19 @@
                         <li>
                             <button
                                 onclick="openEditModal('{{ $comment->news_id }}', '{{ $comment->id }}', '{{ $comment->content }}')"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600
+                                class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600
                                 dark:hover:text-white">Edit</button>
                         </li>
                         <li>
-                            <a href="#"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                            <form action="/news/{{ $comment->news_id . '/' . $comment->id }}" method="POST"
+                                class="inline-block" onsubmit="return confirm('Anda yakin ingin menghapus komen ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600
+                                dark:hover:text-white">Remove
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
