@@ -23,7 +23,7 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($categories as $category)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $loop->index }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $category->id }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                             {{ $category->name }}
                         </td>
