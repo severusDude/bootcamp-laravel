@@ -29,6 +29,7 @@ Route::middleware([
 
     Route::prefix('/admin')->middleware('role:admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::patch('/categories/{id}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
         Route::resource('categories', CategoryController::class);
         Route::patch('/news/{id}/restore', [NewsController::class, 'restore'])->name('news.restore');
         Route::resource('news', NewsController::class);

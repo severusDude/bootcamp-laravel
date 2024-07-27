@@ -84,11 +84,14 @@
                                     onsubmit="return confirm('Anda yakin ingin restorasi berita ini?');">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="text-red-600 hover:text-red-900 flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22" />
+                                    <button type="submit"
+                                        @if (!$newsItem->category->deleted_at) class="text-gray-500 hover:text-gray-800 flex items-center"
+                                        @else disabled class="text-gray-500 flex items-center" @endif>
+                                        <svg class="w-6 h-6 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M3 9h13a5 5 0 0 1 0 10H7M3 9l4-4M3 9l4 4" />
                                         </svg>
                                     </button>
                                 </form>

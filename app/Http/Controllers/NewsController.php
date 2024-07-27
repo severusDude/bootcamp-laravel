@@ -14,7 +14,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::with('category')->latest()->withTrashed()->paginate(5);
+        $news = News::with(array('category' => function ($query) {
+            $query->withTrashed();
+        }))->latest()->withTrashed()->paginate(5);
 
         return view('admin.news.index', compact('news'));
     }

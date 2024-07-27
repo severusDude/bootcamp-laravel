@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('news')->latest()->withTrashed()->paginate(5);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -81,6 +81,15 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        $category->news()->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
+    }
+
+    public function restore(string $id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+        $category->restore();
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category restored successfully');
     }
 }
