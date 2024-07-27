@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = 'category_id';
+    use SoftDeletes;
 
     protected $fillable = ['category_name', 'category_desc'];
 
+    protected $hidden = ['deleted_at',];
+
     public function news()
     {
-        $this->hasMany(News::class);
+        return $this->hasMany(News::class);
     }
 }

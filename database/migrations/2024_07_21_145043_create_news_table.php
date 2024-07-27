@@ -14,12 +14,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->id('news_id');
-            $table->string('news_title');
-            $table->foreignIdFor(Category::class, 'category_id');
-            $table->foreignId('created_by')->constrained('users', 'id')->cascadeOnDelete();
+            $table->id();
+            $table->string('title');
+            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
-            $table->text('news_body');
+            $table->text('body');
             $table->softDeletes();
         });
     }

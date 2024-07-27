@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             [
                 // editor
                 'name' => "editor",
-                'email' => "testeditor@example.com",
+                'email' => "editor@example.com",
                 'password' => "editor",
                 'role' => 'editor'
             ],
