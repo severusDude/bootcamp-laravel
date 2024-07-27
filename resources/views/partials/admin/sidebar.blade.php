@@ -32,7 +32,18 @@
             </li>
 
             <!-- Categories Dropdown -->
-            <li x-data="{ open: false }">
+            <li>
+                <a href="{{ route('admin.categories.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                        <path
+                            d="M4 4h3V1H4v3zM4 10h3V7H4v3zM4 16h3v-3H4v3zM10 4h3V1h-3v3zM10 10h3V7h-3v3zM10 16h3v-3h-3v3zM16 4h3V1h-3v3zM16 10h3V7h-3v3zM16 16h3v-3h-3v3z" />
+                    </svg>
+                    <span class="ms-3 whitespace-nowrap">Kategori</span>
+                </a>
+            </li>
+            {{-- <li x-data="{ open: false }">
                 <button @click="open = !open"
                     class="flex items-center justify-between p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full">
                     <div class="flex items-center">
@@ -76,7 +87,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
 
             <!-- Users -->
