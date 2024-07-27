@@ -13,7 +13,7 @@ class HomeController extends Controller
 
         $title = 'Homepage';
         $categories = collect(Category::all());
-        $news = collect(News::with('category')->get());
+        $news = News::with('category')->latest()->paginate(9);
 
         return view('standard.homepage', compact('title', 'categories', 'news'));
     }

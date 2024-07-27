@@ -21,4 +21,7 @@
             </a>
         @endforeach
     </div>
+    <div class="mt-4">
+        {{ $news->links() }}
+    </div>
 </x-layout>
